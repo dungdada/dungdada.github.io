@@ -111,24 +111,6 @@
     font-size: 15.5px;
   }
 
-  /* ---------- figure ---------- */
-  figure { margin: 0; }
-  .plate {
-    background: var(--sunk);
-    border: 1px solid var(--rule);
-    padding: clamp(10px, 1.6vw, 18px);
-  }
-  .plate img { display: block; width: 100%; height: auto; }
-  figcaption {
-    font-size: 13.5px; line-height: 1.72; color: var(--ink-2);
-    margin-top: 12px; max-width: 62ch;
-  }
-  figcaption b {
-    display: block; color: var(--ink); font-weight: 700;
-    font-family: "IBM Plex Mono", monospace; font-size: 10.5px;
-    letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px;
-  }
-
   /* ---------- sections ---------- */
   section { padding-block: clamp(52px, 9vh, 104px); }
   .sec-head {
@@ -242,7 +224,6 @@
 
   @media print {
     body { background: #fff; color: #000; font-size: 10pt; }
-    .plate { background: #fff; }
     section { padding-block: 12pt; }
     .proj, .row { break-inside: avoid; }
   }
@@ -266,20 +247,6 @@
       헬스케어 도메인에서 LLM 에이전트의 툴 콜링, 입력 가드레일, 근거 기반 응답을 직접 설계합니다.
       모델 점수에서 멈추지 않고 추론을 API·워커·컨테이너로 옮겨 실제로 동작하게 만드는 구간까지 맡습니다.
     </p>
-  </section>
-
-  <section style="padding-top:clamp(30px,5vh,52px)">
-    <figure class="rise">
-      <div class="plate">
-        <img src="img/backoffice-prediction.png" width="1600" height="794"
-             alt="환자 진료 상세 화면. 흉부 X-ray 이미지 옆에 AI 폐렴 예측 결과 표가 있고, 폐렴 여부 Positive, Confidence 93.1%, 사용 모델 final-seed42-best8-efficientnet 이 표시되어 있다.">
-      </div>
-      <figcaption>
-        <b>직접 학습한 모델이 서비스에서 돌아가는 화면</b>
-        해커톤에서 만든 EfficientNet-B0 체크포인트(<code>final-seed42-best8</code>)를 환자 관리 백오피스에 연결한 결과입니다.
-        FastAPI가 Redis Stream에 작업을 넣으면 별도 컨테이너의 AI 워커가 추론하고, Pub/Sub으로 돌아온 결과를 진료기록에 붙입니다.
-      </figcaption>
-    </figure>
   </section>
 
   <main>
@@ -342,33 +309,7 @@
         약 5,200장의 불균형 의료영상 분류. 기획부터 최종 제출까지 개인으로 진행했고, 이 모델을 뒤에 백오피스 서비스에 붙였습니다.
       </p>
 
-      <div class="pbody">
-        <div>
-          <figure>
-            <div class="plate">
-              <img src="img/gradcam.png" width="1600" height="553" loading="lazy"
-                   alt="Grad-CAM 3분할 이미지. 왼쪽은 흉부 X-ray 원본, 가운데는 모델이 주목한 영역의 열지도, 오른쪽은 둘을 겹친 오버레이. 오른쪽 위 여백 부분이 붉게 강하게 나타난다.">
-            </div>
-            <figcaption>
-              <b>Grad-CAM — 모델이 어디를 보는가</b>
-              왼쪽 원본, 가운데 열지도, 오른쪽 겹친 것. 이 샘플은 폐 실질보다 <b style="display:inline;font-family:inherit;font-size:inherit;letter-spacing:0;text-transform:none">오른쪽 상단 여백과 촬영 마커</b>에 강하게 반응합니다.
-              리더보드 점수만 봐서는 안 보이는 문제라, 정답·오답 이미지를 나눠 뽑아 확인했습니다.
-            </figcaption>
-          </figure>
-
-          <figure style="margin-top:28px">
-            <div class="plate">
-              <img src="img/confusion-matrix.png" width="1600" height="1371" loading="lazy"
-                   alt="Validation confusion matrix. Normal을 Normal로 265건, Pneumonia로 3건. Pneumonia를 Normal로 1건, Pneumonia로 775건. Sensitivity 0.9987, Specificity 0.9888.">
-            </div>
-            <figcaption>
-              <b>Validation confusion matrix</b>
-              폐렴 776건 중 놓친 것은 1건(Sensitivity 0.9987), 정상 268건 중 오탐 3건(Specificity 0.9888).
-              의료 선별 도구에서는 놓치는 쪽이 더 비싸다고 보고 threshold를 0.5가 아닌 <b style="display:inline;font-family:inherit;font-size:inherit;letter-spacing:0;text-transform:none">0.48</b>로 낮췄습니다.
-            </figcaption>
-          </figure>
-        </div>
-
+      <div class="pbody solo">
         <div>
           <ul class="stack">
             <li>EfficientNet-B0</li><li>timm</li><li>320px</li><li>class weight</li>
@@ -416,7 +357,7 @@
       </div>
       <p class="pmeta mono">2026.07.13 — 07.29 · 백엔드 · 팀 리드</p>
       <p class="pone">
-        위 X-ray 모델을 실제 진료기록 화면에 연결했습니다. 맨 위 스크린샷이 이 프로젝트의 결과입니다.
+        위 X-ray 모델을 실제 진료기록 화면에 연결했습니다. 진료기록에 X-ray를 올리면 폐렴 여부와 확률이 붙습니다.
       </p>
       <div class="pbody solo">
         <ul class="stack">
