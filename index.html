@@ -3,53 +3,50 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="정다원 — AI Agent Developer. 헬스케어 도메인 LLM 에이전트, 툴 콜링, 입력 가드레일, 근거 기반 응답 설계. 이력서와 프로젝트 포트폴리오.">
+<meta name="description" content="정다원 — AI Agent Developer. 헬스케어 LLM 에이전트의 툴 콜링·입력 가드레일·근거 기반 응답 설계. 의료영상 분류와 모델 서빙.">
 <meta name="author" content="정다원">
 <meta property="og:type" content="profile">
 <meta property="og:title" content="정다원 · AI Agent Developer">
-<meta property="og:description" content="헬스케어 LLM 에이전트를 실제 서비스에 붙이는 구간을 맡습니다.">
+<meta property="og:description" content="근거를 못 찾으면 모른다고 말하는 건강비서를 만듭니다.">
 <meta property="og:url" content="https://dungdada.github.io/">
 <link rel="canonical" href="https://dungdada.github.io/">
 <title>정다원 Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=Gothic+A1:wght@300;400;500;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300;400;500;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
   :root {
     color-scheme: light dark;
     padding-top: env(safe-area-inset-top, 0px);
     padding-bottom: env(safe-area-inset-bottom, 0px);
 
-    --paper:    #ece9e3;
-    --paper-2:  #e3dfd7;
-    --ink:      #121316;
-    --ink-2:    #54565d;
-    --ink-3:    #8b8882;
-    --rule:     #cbc7bd;
-    --accent:   #1e2ee6;
-    --accent-ink: #ffffff;
+    --paper:   #f4f3f0;
+    --sunk:    #eae8e3;
+    --ink:     #15161a;
+    --ink-2:   #5b5d65;
+    --ink-3:   #8e8d88;
+    --rule:    #dbd8d1;
+    --rule-2:  #c3bfb6;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --paper:    #101114;
-      --paper-2:  #191a1f;
-      --ink:      #f1efea;
-      --ink-2:    #a7a69f;
-      --ink-3:    #6e6d68;
-      --rule:     #2d2e34;
-      --accent:   #8b95ff;
-      --accent-ink: #0c0d10;
+      --paper:  #131418;
+      --sunk:   #1b1c21;
+      --ink:    #eeece7;
+      --ink-2:  #a2a099;
+      --ink-3:  #6d6c67;
+      --rule:   #2c2d33;
+      --rule-2: #3c3d44;
     }
   }
   :root[data-theme="dark"] {
-    --paper:    #101114;
-    --paper-2:  #191a1f;
-    --ink:      #f1efea;
-    --ink-2:    #a7a69f;
-    --ink-3:    #6e6d68;
-    --rule:     #2d2e34;
-    --accent:   #8b95ff;
-    --accent-ink: #0c0d10;
+    --paper:  #131418;
+    --sunk:   #1b1c21;
+    --ink:    #eeece7;
+    --ink-2:  #a2a099;
+    --ink-3:  #6d6c67;
+    --rule:   #2c2d33;
+    --rule-2: #3c3d44;
   }
 
   * { box-sizing: border-box; }
@@ -62,631 +59,487 @@
     color: var(--ink);
     font-family: "Gothic A1", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
     font-size: 16px;
-    line-height: 1.75;
-    font-weight: 400;
+    line-height: 1.78;
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
     word-break: keep-all;
     overflow-wrap: break-word;
+    overflow-x: hidden;
   }
 
-  .wrap { max-width: 1240px; margin: 0 auto; padding-inline: 24px; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding-inline: 24px; }
 
-  /* ============ progress rail ============ */
-  .progress {
-    position: fixed; left: 0; top: 0; height: 3px; width: 100%;
-    background: transparent; z-index: 50; pointer-events: none;
-  }
-  .progress i { display: block; height: 100%; width: 0; background: var(--accent); }
-
-  /* ============ hero ============ */
-  .hero { padding-block: clamp(56px, 11vh, 120px) clamp(44px, 8vh, 96px); }
-
-  .kicker {
+  .mono {
     font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 11.5px; letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--ink-2); margin: 0 0 clamp(20px, 4vh, 40px);
-  }
-
-  .display {
-    font-family: "Archivo", "Gothic A1", sans-serif;
-    font-weight: 900;
-    font-size: clamp(3.1rem, 13.2vw, 10.5rem);
-    line-height: 0.86;
-    letter-spacing: -0.045em;
-    margin: 0;
-    text-transform: uppercase;
-  }
-  .display span { display: block; }
-  .display .l2 { color: var(--accent); }
-
-  .rulebar {
-    height: clamp(12px, 2.4vw, 26px);
-    background: var(--ink);
-    margin-block: clamp(18px, 3vw, 34px) clamp(24px, 4vw, 44px);
-    width: 100%;
-    transform-origin: left center;
-  }
-
-  .hero-foot {
-    display: grid;
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr);
-    gap: clamp(18px, 4vw, 56px);
-    align-items: start;
-  }
-  .hero-name {
-    font-family: "Gothic A1", sans-serif;
-    font-weight: 900;
-    font-size: clamp(2rem, 5.2vw, 3.4rem);
-    letter-spacing: -0.045em;
-    line-height: 1.05;
-    margin: 0;
-  }
-  .hero-name small {
-    display: block;
-    font-family: "IBM Plex Mono", monospace;
-    font-weight: 400;
-    font-size: 11.5px;
-    letter-spacing: 0.14em;
+    font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase;
     color: var(--ink-2);
-    margin-top: 12px;
-    text-transform: uppercase;
-  }
-  .hero-say {
-    font-size: clamp(1.05rem, 2.1vw, 1.5rem);
-    font-weight: 300;
-    line-height: 1.65;
-    margin: 0;
-    max-width: 30ch;
-    text-wrap: pretty;
-  }
-  .hero-say b { font-weight: 700; }
-  .hero-say em {
-    font-style: normal;
-    box-shadow: inset 0 -0.42em 0 color-mix(in srgb, var(--accent) 22%, transparent);
   }
 
-  /* ============ figure strip ============ */
-  .strip {
-    border-top: 2px solid var(--ink);
+  /* ---------- masthead ---------- */
+  .top {
     border-bottom: 1px solid var(--rule);
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding-block: 18px;
+    display: flex; flex-wrap: wrap; gap: 6px 22px; align-items: baseline;
   }
-  .strip div { padding-block: 22px; padding-right: 16px; }
-  .strip div + div { border-left: 1px solid var(--rule); padding-left: 20px; }
-  .strip b {
-    display: block;
-    font-family: "Archivo", sans-serif;
+  .top .nm { font-weight: 900; font-size: 17px; letter-spacing: -0.03em; }
+  .top .rl { color: var(--ink-2); }
+  .top .sp { margin-left: auto; }
+  .top a {
+    color: var(--ink-2); text-decoration: none; border-bottom: 1px solid var(--rule-2);
+    text-transform: none; letter-spacing: 0.01em; font-size: 12px;
+  }
+  .top a:hover { color: var(--ink); }
+
+  /* ---------- hero ---------- */
+  .hero { padding-block: clamp(48px, 9vh, 104px) clamp(30px, 5vh, 56px); }
+  .hero h1 {
+    font-size: clamp(1.85rem, 4.6vw, 3.6rem);
     font-weight: 900;
-    font-size: clamp(1.7rem, 3.6vw, 2.9rem);
-    letter-spacing: -0.04em;
-    line-height: 1;
-    font-variant-numeric: tabular-nums;
-  }
-  .strip span {
-    display: block;
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--ink-2); margin-top: 9px;
-  }
-
-  /* ============ sections ============ */
-  section { padding-block: clamp(64px, 11vh, 132px); }
-  .sec-label {
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--ink-2);
-    border-top: 1px solid var(--rule);
-    padding-top: 12px;
-    margin: 0 0 clamp(30px, 5vh, 56px);
-    display: flex; justify-content: space-between; gap: 16px;
-  }
-
-  .say-big {
-    font-size: clamp(1.4rem, 3.5vw, 2.5rem);
-    font-weight: 300;
-    line-height: 1.5;
-    letter-spacing: -0.028em;
-    max-width: 26ch;
+    line-height: 1.34;
+    letter-spacing: -0.045em;
     margin: 0;
+    max-width: 19ch;
     text-wrap: pretty;
   }
-  .say-big b { font-weight: 700; }
-  .say-sub {
-    margin: clamp(22px, 4vh, 38px) 0 0;
-    max-width: 52ch;
+  .hero h1 u {
+    text-decoration: none;
+    box-shadow: inset 0 -0.14em 0 var(--rule-2);
+  }
+  .hero p {
+    margin: clamp(22px, 4vh, 36px) 0 0;
+    max-width: 50ch;
     color: var(--ink-2);
     font-size: 15.5px;
   }
 
-  /* ============ project ============ */
-  .proj {
-    display: grid;
-    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.5fr);
-    gap: clamp(20px, 4vw, 64px);
-    padding-block: clamp(38px, 6vh, 64px);
-    border-top: 1px solid var(--rule);
+  /* ---------- figure ---------- */
+  figure { margin: 0; }
+  .plate {
+    background: var(--sunk);
+    border: 1px solid var(--rule);
+    padding: clamp(10px, 1.6vw, 18px);
+  }
+  .plate img { display: block; width: 100%; height: auto; }
+  figcaption {
+    font-size: 13.5px; line-height: 1.72; color: var(--ink-2);
+    margin-top: 12px; max-width: 62ch;
+  }
+  figcaption b {
+    display: block; color: var(--ink); font-weight: 700;
+    font-family: "IBM Plex Mono", monospace; font-size: 10.5px;
+    letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px;
+  }
+
+  /* ---------- sections ---------- */
+  section { padding-block: clamp(52px, 9vh, 104px); }
+  .sec-head {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+    border-top: 2px solid var(--ink); padding-top: 12px;
+    margin-bottom: clamp(26px, 4vh, 44px);
+  }
+  .sec-head h2 { font-size: 15px; font-weight: 900; letter-spacing: -0.01em; margin: 0; }
+
+  /* ---------- project ---------- */
+  .proj { border-top: 1px solid var(--rule); padding-block: clamp(34px, 5vh, 58px); }
+  .proj:first-of-type { border-top: none; padding-top: 0; }
+
+  .phead {
+    display: grid; grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px 24px; align-items: baseline;
+  }
+  .proj h3 {
+    font-size: clamp(1.35rem, 3vw, 2.05rem);
+    font-weight: 900; letter-spacing: -0.042em; line-height: 1.3;
+    margin: 0; text-wrap: balance;
+  }
+  .score {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px; letter-spacing: 0.06em; white-space: nowrap;
+    border: 1px solid var(--ink); padding: 3px 9px;
+  }
+  .pmeta { margin: 10px 0 0; }
+  .pone { margin: 16px 0 0; color: var(--ink-2); max-width: 58ch; font-size: 15.5px; }
+
+  .pbody {
+    display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
+    gap: clamp(22px, 3.6vw, 48px);
+    margin-top: clamp(24px, 4vh, 38px);
     align-items: start;
   }
-  .proj:last-of-type { border-bottom: 1px solid var(--rule); }
+  .pbody.solo { grid-template-columns: minmax(0, 1fr); max-width: 62ch; }
 
-  .fig { position: sticky; top: clamp(24px, 8vh, 72px); }
-  .fig b {
-    display: block;
-    font-family: "Archivo", "Gothic A1", sans-serif;
-    font-weight: 900;
-    font-size: clamp(3rem, 8.2vw, 6.4rem);
-    line-height: 0.84;
-    letter-spacing: -0.055em;
-    color: var(--accent);
-    font-variant-numeric: tabular-nums;
-    overflow-wrap: anywhere;
-  }
-  .fig b i { font-style: normal; font-size: 0.42em; letter-spacing: -0.02em; }
-  .fig span {
-    display: block;
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--ink-2); margin-top: 16px; line-height: 1.75;
-  }
-
-  .proj h3 {
-    font-size: clamp(1.45rem, 3.1vw, 2.25rem);
-    font-weight: 900;
-    letter-spacing: -0.04em;
-    line-height: 1.22;
-    margin: -0.12em 0 0;
-    text-wrap: balance;
-  }
-  .proj .meta {
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 11px; letter-spacing: 0.07em;
-    color: var(--ink-3);
-    margin: 14px 0 0;
-    text-transform: uppercase;
-  }
-  .proj .one { margin: 16px 0 0; color: var(--ink-2); max-width: 54ch; font-size: 15.5px; }
-
-  .stack {
-    display: flex; flex-wrap: wrap; gap: 6px;
-    margin: 22px 0 0; padding: 0; list-style: none;
-  }
+  .stack { display: flex; flex-wrap: wrap; gap: 5px; margin: 0 0 20px; padding: 0; list-style: none; }
   .stack li {
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 11px; letter-spacing: 0.02em;
-    padding: 4px 9px;
-    border: 1px solid var(--rule);
-    color: var(--ink-2);
-    background: var(--paper-2);
+    font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: 0.02em;
+    padding: 3px 8px; border: 1px solid var(--rule-2); color: var(--ink-2);
   }
 
-  .did { margin: 26px 0 0; padding: 0; list-style: none; max-width: 58ch; }
+  .did { margin: 0; padding: 0; list-style: none; counter-reset: d; }
   .did li {
-    display: grid;
-    grid-template-columns: 26px minmax(0, 1fr);
-    gap: 4px;
-    padding-block: 9px;
-    border-top: 1px solid var(--rule);
-    font-size: 15px;
-    line-height: 1.68;
+    display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 4px;
+    border-top: 1px solid var(--rule); padding-block: 9px;
+    font-size: 14.5px; line-height: 1.7;
   }
   .did li::before {
-    content: counter(d, decimal-leading-zero);
-    counter-increment: d;
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 10.5px;
-    color: var(--ink-3);
-    padding-top: 0.42em;
+    content: counter(d, decimal-leading-zero); counter-increment: d;
+    font-family: "IBM Plex Mono", monospace; font-size: 10px;
+    color: var(--ink-3); padding-top: 0.5em;
   }
-  .did { counter-reset: d; }
   .did b { font-weight: 700; }
-  .did .hl { color: var(--accent); font-weight: 700; font-variant-numeric: tabular-nums; }
 
-  /* ============ skills ============ */
-  .skills { display: flex; flex-direction: column; }
-  .srow {
-    display: grid;
-    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.5fr);
-    gap: clamp(12px, 4vw, 64px);
-    padding-block: 20px;
-    border-top: 1px solid var(--rule);
-    align-items: baseline;
-  }
-  .srow:last-child { border-bottom: 1px solid var(--rule); }
-  .srow dt {
-    font-family: "Archivo", sans-serif;
-    font-weight: 700;
-    font-size: clamp(1rem, 1.9vw, 1.3rem);
-    letter-spacing: -0.02em;
-  }
-  .srow dd { margin: 0; color: var(--ink-2); font-size: 15px; line-height: 1.7; }
-  .srow dd b { color: var(--ink); font-weight: 700; }
-
-  /* ============ history ============ */
-  .hrow {
-    display: grid;
-    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.5fr);
-    gap: clamp(8px, 4vw, 64px);
-    padding-block: 22px;
-    border-top: 1px solid var(--rule);
-  }
-  .hrow:last-of-type { border-bottom: 1px solid var(--rule); }
-  .hrow .when {
+  /* ---------- pipeline block ---------- */
+  .pipe {
+    border: 1px solid var(--rule-2); background: var(--sunk);
+    padding: clamp(14px, 2vw, 22px);
     font-family: "IBM Plex Mono", monospace;
-    font-size: 12px; color: var(--ink-3); letter-spacing: 0.04em;
+    font-size: 12px; line-height: 2.05; letter-spacing: 0.01em;
+    overflow-x: auto;
   }
-  .hrow h4 { margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.02em; }
-  .hrow h4 span { color: var(--ink-3); font-weight: 400; font-size: 14.5px; }
-  .hrow ul { margin: 9px 0 0; padding-left: 16px; color: var(--ink-2); font-size: 14.5px; }
-  .hrow ul li { margin-bottom: 2px; }
-  .hrow p { margin: 8px 0 0; color: var(--ink-2); font-size: 14.5px; }
+  .pipe table { border-collapse: collapse; white-space: nowrap; }
+  .pipe td { padding: 0 14px 0 0; vertical-align: baseline; }
+  .pipe .st { color: var(--ink); font-weight: 500; }
+  .pipe .ds { color: var(--ink-2); white-space: normal; }
+  .pipe .ar { color: var(--ink-3); }
 
-  /* ============ contact ============ */
-  .contact { border-top: 2px solid var(--ink); padding-block: clamp(44px, 8vh, 88px) clamp(56px, 10vh, 110px); }
-  .contact-grid {
-    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(18px, 3vw, 40px);
-    margin-top: clamp(26px, 5vh, 48px);
+  /* ---------- skills / history ---------- */
+  .row {
+    display: grid; grid-template-columns: minmax(0, 0.62fr) minmax(0, 1.6fr);
+    gap: 6px clamp(20px, 4vw, 56px);
+    border-top: 1px solid var(--rule); padding-block: 17px;
   }
-  .contact-grid a, .contact-grid p { margin: 0; }
-  .contact-grid .k {
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--ink-2); display: block; margin-bottom: 8px;
-  }
-  .contact-grid .v {
-    font-family: "Archivo", "Gothic A1", sans-serif;
-    font-weight: 700; font-size: clamp(0.95rem, 1.9vw, 1.25rem);
-    letter-spacing: -0.02em; color: var(--ink);
-    text-decoration: none;
-    border-bottom: 2px solid var(--accent);
-    overflow-wrap: anywhere;
-  }
-  a.v:hover { color: var(--accent); }
-  .colophon {
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 10.5px; letter-spacing: 0.06em; color: var(--ink-3);
-    margin-top: clamp(40px, 7vh, 72px);
-    border-top: 1px solid var(--rule); padding-top: 16px;
-    line-height: 1.9;
-  }
+  .row:last-of-type { border-bottom: 1px solid var(--rule); }
+  .row dt, .row .k { font-weight: 700; font-size: 15px; letter-spacing: -0.02em; }
+  .row dd, .row .v { margin: 0; color: var(--ink-2); font-size: 14.5px; line-height: 1.72; }
+  .row dd b, .row .v b { color: var(--ink); font-weight: 700; }
+  .row h4 { margin: 0; font-size: 16px; font-weight: 700; letter-spacing: -0.022em; }
+  .row h4 span { color: var(--ink-3); font-weight: 400; font-size: 14px; }
+  .row ul { margin: 7px 0 0; padding-left: 15px; color: var(--ink-2); font-size: 14px; }
+  .row p { margin: 7px 0 0; color: var(--ink-2); font-size: 14px; }
 
-  /* ============ motion (transform only — text never hidden) ============ */
-  .rise { transform: translateY(20px); transition: transform .62s cubic-bezier(.22,.68,.32,1); }
+  /* ---------- contact ---------- */
+  .foot { border-top: 2px solid var(--ink); padding-block: clamp(34px, 6vh, 64px) clamp(44px, 8vh, 88px); }
+  .cgrid { display: flex; flex-wrap: wrap; gap: 10px 48px; margin-top: 18px; }
+  .cgrid a, .cgrid span.val {
+    font-weight: 700; font-size: 17px; letter-spacing: -0.02em;
+    color: var(--ink); text-decoration: none;
+    border-bottom: 2px solid var(--ink);
+  }
+  .cgrid a:hover { color: var(--ink-2); border-bottom-color: var(--ink-2); }
+  .colophon { margin-top: clamp(30px, 5vh, 56px); line-height: 1.95; text-transform: none; letter-spacing: 0.02em; }
+
+  /* ---------- motion: transform only, text always readable ---------- */
+  .rise { transform: translateY(14px); transition: transform .55s cubic-bezier(.22,.68,.32,1); }
   .rise.in { transform: none; }
-  .bar-anim { transform: scaleX(0); transition: transform .85s cubic-bezier(.22,.68,.32,1); }
-  .bar-anim.in { transform: scaleX(1); }
+  @media (prefers-reduced-motion: reduce) { .rise { transition: none; transform: none !important; } }
 
-  @media (prefers-reduced-motion: reduce) {
-    .rise, .bar-anim { transition: none; transform: none !important; }
-    * { scroll-behavior: auto !important; }
-  }
-
-  /* ============ responsive ============ */
-  @media (max-width: 860px) {
-    .hero-foot { grid-template-columns: minmax(0, 1fr); gap: 26px; }
-    .strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .strip div:nth-child(3) { border-left: none; padding-left: 0; }
-    .strip div:nth-child(3), .strip div:nth-child(4) { border-top: 1px solid var(--rule); }
-    .proj, .srow, .hrow { grid-template-columns: minmax(0, 1fr); }
-    .fig { position: static; }
-    .fig span { margin-top: 10px; }
-    .proj h3 { margin-top: 18px; }
-    .contact-grid { grid-template-columns: minmax(0, 1fr); gap: 22px; }
-    .say-big { max-width: none; }
+  /* ---------- responsive ---------- */
+  @media (max-width: 820px) {
+    .pbody { grid-template-columns: minmax(0, 1fr); }
+    .row { grid-template-columns: minmax(0, 1fr); }
+    .phead { grid-template-columns: minmax(0, 1fr); }
+    .score { justify-self: start; }
+    .top .sp { margin-left: 0; width: 100%; }
   }
 
   @media print {
-    .progress { display: none; }
     body { background: #fff; color: #000; font-size: 10pt; }
-    .display { font-size: 42pt; }
-    .rulebar { height: 6px; }
-    section { padding-block: 14pt; }
-    .proj, .hrow, .srow { break-inside: avoid; }
-    .fig { position: static; }
+    .plate { background: #fff; }
+    section { padding-block: 12pt; }
+    .proj, .row { break-inside: avoid; }
   }
 </style>
 </head>
 <body>
 
-<div class="progress" aria-hidden="true"><i id="bar"></i></div>
-
-<header class="hero wrap">
-  <p class="kicker">Portfolio — 2026</p>
-  <h1 class="display rise">
-    <span>AI Agent</span>
-    <span class="l2">Developer</span>
-  </h1>
-  <div class="rulebar bar-anim" aria-hidden="true"></div>
-  <div class="hero-foot">
-    <p class="hero-name rise">정다원<small>Dawon Jung</small></p>
-    <p class="hero-say rise">
-      <b>헬스케어 LLM 에이전트</b>를 실제 서비스에 붙이는 구간을 맡습니다.
-      <em>툴 콜링, 입력 가드레일, 근거 기반 응답</em>을 직접 설계합니다.
-    </p>
-  </div>
-</header>
-
 <div class="wrap">
-  <div class="strip">
-    <div><b data-count="6">6</b><span>공공 API 툴 연동</span></div>
-    <div><b data-count="145">145</b><span>커밋 / 팀 496</span></div>
-    <div><b data-count="5">5</b><span>프로젝트</span></div>
-    <div><b>2<i>위</i></b><span>해커톤 최고 순위</span></div>
-  </div>
+  <header class="top mono">
+    <span class="nm">정다원</span>
+    <span class="rl">AI Agent Developer</span>
+    <span class="sp"><a href="mailto:jungdw95@gmail.com">jungdw95@gmail.com</a></span>
+    <span><a href="https://github.com/dungdada">github.com/dungdada</a></span>
+  </header>
 </div>
 
-<main class="wrap">
-
-  <section id="intro">
-    <p class="sec-label"><span>About</span><span>01</span></p>
-    <p class="say-big rise">
-      건강 질문은 <b>틀리면 안 되는 질문</b>입니다. 그래서 그럴듯한 답 대신,
-      근거를 못 찾으면 <b>모른다고 말하는</b> 에이전트를 만듭니다.
-    </p>
-    <p class="say-sub rise">
-      모델 점수에서 멈추지 않고 추론을 API·워커·컨테이너로 옮겨 서비스에서 실제로 동작하게 만드는 구간까지 맡습니다.
-      그 전에는 의료 영상과 임상 테이블 데이터로 예측 모델을 만들며 해커톤 상위권 성적을 냈습니다.
+<div class="wrap">
+  <section class="hero" style="padding-bottom:0">
+    <h1 class="rise">근거를 못 찾으면 <u>모른다고 말하는</u> 건강비서를 만듭니다.</h1>
+    <p class="rise">
+      헬스케어 도메인에서 LLM 에이전트의 툴 콜링, 입력 가드레일, 근거 기반 응답을 직접 설계합니다.
+      모델 점수에서 멈추지 않고 추론을 API·워커·컨테이너로 옮겨 실제로 동작하게 만드는 구간까지 맡습니다.
     </p>
   </section>
 
-  <section id="projects">
-    <p class="sec-label"><span>Projects</span><span>02</span></p>
-
-    <article class="proj">
-      <div class="fig rise">
-        <b data-count="145">145</b>
-        <span>커밋 / 팀 496<br>2026.08 — 진행중<br>팀 3인 · AI 에이전트</span>
+  <section style="padding-top:clamp(30px,5vh,52px)">
+    <figure class="rise">
+      <div class="plate">
+        <img src="img/backoffice-prediction.png" width="1600" height="794"
+             alt="환자 진료 상세 화면. 흉부 X-ray 이미지 옆에 AI 폐렴 예측 결과 표가 있고, 폐렴 여부 Positive, Confidence 93.1%, 사용 모델 final-seed42-best8-efficientnet 이 표시되어 있다.">
       </div>
-      <div class="rise">
+      <figcaption>
+        <b>직접 학습한 모델이 서비스에서 돌아가는 화면</b>
+        해커톤에서 만든 EfficientNet-B0 체크포인트(<code>final-seed42-best8</code>)를 환자 관리 백오피스에 연결한 결과입니다.
+        FastAPI가 Redis Stream에 작업을 넣으면 별도 컨테이너의 AI 워커가 추론하고, Pub/Sub으로 돌아온 결과를 진료기록에 붙입니다.
+      </figcaption>
+    </figure>
+  </section>
+
+  <main>
+
+  <section id="projects">
+    <div class="sec-head"><h2>프로젝트</h2><span class="mono">5건 · 2026.05 — 현재</span></div>
+
+    <!-- 01 -->
+    <article class="proj rise">
+      <div class="phead">
         <h3>이어봄 — 대화형 건강비서 ‘봄이’</h3>
-        <p class="meta">Ieobom · LLM Agent</p>
-        <p class="one">건강기록을 근거로 사용자의 건강 질문에 답하는 LLM 에이전트를 단독 설계·구현했습니다.</p>
-        <ul class="stack">
-          <li>Gemini Function Calling</li><li>3단 입력 파이프라인</li><li>근거 그라운딩</li>
-          <li>공공 API 툴 6종</li><li>FastAPI</li><li>React / TypeScript</li><li>PostgreSQL</li>
-        </ul>
-        <ol class="did">
-          <li><span>에이전트 백엔드 전체(스코프 판정 엔진·프롬프트·DTO·라우터)와 대화 UI 구현 — 팀 496 커밋 중 <b class="hl">145 커밋</b></span></li>
-          <li><span>툴 <b class="hl">6종</b> 연동·라우팅 — 식약처 DUR, 식품영양성분, 기상청·에어코리아, 전국 의료시설, 질병관리청, 개인 건강기록</span></li>
-          <li><span>룰 기반 패스트패스로 LLM 분류 지연을 <b class="hl">0.001초</b>로 제거, 툴 병렬 호출과 부분 실패 허용 처리</span></li>
-          <li><span>근거 없는 건강 조언을 <b>문장 단위</b>로 차단 — 임신·복약처럼 위험한 질문이 추측으로 넘어가지 않도록</span></li>
-          <li><span>Naver OCR 2단계 파이프라인을 Gemini 멀티모달 단일 호출로 대체, 검진 결과지를 4컬럼으로 구조화</span></li>
-        </ol>
+        <span class="score">145 / 496 커밋</span>
+      </div>
+      <p class="pmeta mono">2026.08 — 진행중 · 팀 3인 · AI 에이전트 전 영역</p>
+      <p class="pone">
+        건강 질문은 틀리면 안 되는 질문입니다. 그럴듯한 답 대신, 공식 데이터에서 근거를 찾지 못하면 멈추는 에이전트를 단독으로 설계·구현했습니다.
+      </p>
+
+      <div class="pbody">
+        <div>
+          <div class="pipe" aria-label="입력 처리 파이프라인">
+            <table>
+              <tr><td class="ar">입력</td><td></td><td></td></tr>
+              <tr><td class="ar">└▸</td><td class="st">① 정규식 하드룰</td><td class="ds">욕설·탈옥 차단 · LLM 호출 전</td></tr>
+              <tr><td class="ar">　└▸</td><td class="st">② 룰 패스트패스</td><td class="ds">의도 확정 발화 · 0.001초</td></tr>
+              <tr><td class="ar">　　└▸</td><td class="st">③ LLM 맥락 추론</td><td class="ds">쿼리 빌딩 → 툴 라우팅</td></tr>
+              <tr><td class="ar">　　　└▸</td><td class="st">툴 6종 병렬 호출</td><td class="ds">asyncio.gather · 부분 실패 허용</td></tr>
+              <tr><td class="ar">　　　　└▸</td><td class="st">근거 검사</td><td class="ds">문장 단위 · 실패 시 “확인 못 함”</td></tr>
+            </table>
+          </div>
+          <p class="mono" style="margin-top:12px; text-transform:none; letter-spacing:0.02em; line-height:1.8">
+            툴 6종 — 식약처 의약품·DUR 병용금기 / 식품영양성분 / 기상청 단기예보 + 에어코리아 대기질 /
+            국립중앙의료원 병원·약국·응급실 / 질병관리청 국가건강정보 / 개인 건강기록 조회
+          </p>
+        </div>
+        <div>
+          <ul class="stack">
+            <li>Gemini Function Calling</li><li>입력 가드레일</li><li>근거 그라운딩</li>
+            <li>FastAPI</li><li>React / TypeScript</li><li>PostgreSQL</li><li>Docker</li>
+          </ul>
+          <ol class="did">
+            <li><span>에이전트 백엔드 전체(스코프 판정 엔진·프롬프트·DTO·라우터)와 대화 UI 구현 — 팀 496 커밋 중 <b>145 커밋</b></span></li>
+            <li><span>명확한 발화를 룰로 먼저 처리해 LLM 분류 대기를 <b>0.001초</b>로 제거. 판정 정확도와 지연을 함께 재는 벤치마크 스크립트로 회귀 관리</span></li>
+            <li><span>근거 없는 건강 조언을 <b>문장 단위</b>로 차단. 임신·복약처럼 개인화가 위험한 질문에는 답 대신 확인 질문을 먼저 던지도록 분기를 고정</span></li>
+            <li><span>Naver CLOVA OCR 2단계 파이프라인을 Gemini 멀티모달 단일 호출로 대체, 검진 결과지를 검사항목·결과값·단위·판정 4컬럼으로 구조화</span></li>
+            <li><span>대화 세션 PostgreSQL 영속화, 최근 24시간 기록 자동 주입과 롤링 요약으로 장기 대화의 맥락 손실 해결</span></li>
+          </ol>
+        </div>
       </div>
     </article>
 
-    <article class="proj">
-      <div class="fig rise">
-        <b>2<i>위</i></b>
-        <span>MAE 0.1246<br>2026.07.30 — 08.07<br>팀 3인 · 해커톤</span>
+    <!-- 02 -->
+    <article class="proj rise">
+      <div class="phead">
+        <h3>흉부 X-ray 폐렴 이진 분류</h3>
+        <span class="score">19위 · 0.95673</span>
       </div>
-      <div class="rise">
+      <p class="pmeta mono">2026.06.16 — 07.01 · 개인 · 해커톤</p>
+      <p class="pone">
+        약 5,200장의 불균형 의료영상 분류. 기획부터 최종 제출까지 개인으로 진행했고, 이 모델을 뒤에 백오피스 서비스에 붙였습니다.
+      </p>
+
+      <div class="pbody">
+        <div>
+          <figure>
+            <div class="plate">
+              <img src="img/gradcam.png" width="1600" height="553" loading="lazy"
+                   alt="Grad-CAM 3분할 이미지. 왼쪽은 흉부 X-ray 원본, 가운데는 모델이 주목한 영역의 열지도, 오른쪽은 둘을 겹친 오버레이. 오른쪽 위 여백 부분이 붉게 강하게 나타난다.">
+            </div>
+            <figcaption>
+              <b>Grad-CAM — 모델이 어디를 보는가</b>
+              왼쪽 원본, 가운데 열지도, 오른쪽 겹친 것. 이 샘플은 폐 실질보다 <b style="display:inline;font-family:inherit;font-size:inherit;letter-spacing:0;text-transform:none">오른쪽 상단 여백과 촬영 마커</b>에 강하게 반응합니다.
+              리더보드 점수만 봐서는 안 보이는 문제라, 정답·오답 이미지를 나눠 뽑아 확인했습니다.
+            </figcaption>
+          </figure>
+
+          <figure style="margin-top:28px">
+            <div class="plate">
+              <img src="img/confusion-matrix.png" width="1600" height="1371" loading="lazy"
+                   alt="Validation confusion matrix. Normal을 Normal로 265건, Pneumonia로 3건. Pneumonia를 Normal로 1건, Pneumonia로 775건. Sensitivity 0.9987, Specificity 0.9888.">
+            </div>
+            <figcaption>
+              <b>Validation confusion matrix</b>
+              폐렴 776건 중 놓친 것은 1건(Sensitivity 0.9987), 정상 268건 중 오탐 3건(Specificity 0.9888).
+              의료 선별 도구에서는 놓치는 쪽이 더 비싸다고 보고 threshold를 0.5가 아닌 <b style="display:inline;font-family:inherit;font-size:inherit;letter-spacing:0;text-transform:none">0.48</b>로 낮췄습니다.
+            </figcaption>
+          </figure>
+        </div>
+
+        <div>
+          <ul class="stack">
+            <li>EfficientNet-B0</li><li>timm</li><li>320px</li><li>class weight</li>
+            <li>threshold 보정</li><li>seed 앙상블</li><li>Grad-CAM</li>
+          </ul>
+          <ol class="did">
+            <li><span>SimpleCNN → ResNet18/34/50 → <b>EfficientNet-B0</b>. 5,200장 규모에서는 큰 모델일수록 과적합돼, 표현력과 크기의 균형점을 찾는 문제였습니다</span></li>
+            <li><span>입력 해상도를 128 → 224 → <b>320px</b>로 올려 미세 음영을 보존. 384는 학습 부담 대비 이득이 없었습니다</span></li>
+            <li><span>클래스 불균형(정상 1,341 : 폐렴 3,875)에 class weight를 적용하고, best model 저장 기준을 accuracy가 아닌 <b>F1</b>로 변경</span></li>
+            <li><span>threshold <b>0.48</b> + seed42·seed7 확률 앙상블(0.55 : 0.45). threshold를 0.475, 0.45까지 더 낮추자 위양성이 늘어 점수가 <b>떨어졌습니다</b> — 앙상블도 많이 섞는 것보다 보완되는 비율을 찾는 게 중요했습니다</span></li>
+          </ol>
+        </div>
+      </div>
+    </article>
+
+    <!-- 03 -->
+    <article class="proj rise">
+      <div class="phead">
         <h3>생활습관 데이터 기반 스트레스 지수 예측</h3>
-        <p class="meta">Stress Score · Regression</p>
-        <p class="one">중복 행이 많아, 점수보다 검증 설계가 승부처였던 회귀 문제였습니다.</p>
+        <span class="score">2위 · MAE 0.1246</span>
+      </div>
+      <p class="pmeta mono">2026.07.30 — 08.07 · 팀 3인 · 해커톤</p>
+      <p class="pone">
+        데이터에 동일 피처 중복 행이 많아, 모델보다 검증 설계가 승부처였던 회귀 문제였습니다.
+      </p>
+      <div class="pbody solo">
         <ul class="stack">
           <li>Quantile ExtraTrees</li><li>StratifiedGroupKFold</li><li>Gower pair matching</li>
-          <li>CatBoost</li><li>XGBoost</li><li>TabPFN</li>
+          <li>CatBoost</li><li>XGBoost</li><li>LightGBM</li><li>TabPFN</li>
         </ul>
         <ol class="did">
-          <li><span>중복 행을 같은 fold에 묶고 전처리를 fold 내부에서만 fit하는 <b>누수 차단 검증 체계</b> 설계</span></li>
-          <li><span>값 전이에 실패하면 모델 예측으로 되돌리는 <b>pair + fallback</b> 하이브리드 구조 제안·구현</span></li>
-          <li><span>MAE 목적에 맞춘 Quantile ExtraTrees 다중 앙상블로 최종 <b class="hl">0.1246</b> · 최종 <b class="hl">2위</b></span></li>
+          <li><span>중복 행을 하나의 그룹으로 묶는 <b>StratifiedGroupKFold</b>로 같은 표본이 train·valid에 갈라지는 것을 차단. 결측 대치와 인코딩은 각 fold의 학습 부분에서만 fit</span></li>
+          <li><span>Test에는 어떤 통계도 fit하지 않는 규칙을 코드로 강제 — 로컬 OOF와 리더보드 점수의 괴리를 없앴습니다</span></li>
+          <li><span>동일 피처 쌍을 매칭해 값을 전이하고, 매칭에 실패하면 모델 예측으로 되돌리는 <b>pair + fallback</b> 하이브리드 구조 제안·구현</span></li>
+          <li><span>MAE 목적에 맞춘 Quantile ExtraTrees 다중 앙상블로 최종 <b>0.1246</b> · 최종 <b>2위</b> (단순 중앙값 기준 MAE 약 0.249)</span></li>
         </ol>
       </div>
     </article>
 
-    <article class="proj">
-      <div class="fig rise">
-        <b>팀장</b>
-        <span>팀 5인<br>2026.07.13 — 07.29<br>백엔드 · 팀 리드</span>
-      </div>
-      <div class="rise">
+    <!-- 04 -->
+    <article class="proj rise">
+      <div class="phead">
         <h3>폐렴 판독 모델을 붙인 환자 관리 백오피스</h3>
-        <p class="meta">AI Health Web · Model Serving</p>
-        <p class="one">직접 학습한 X-ray 판독 모델을 실제 진료기록 화면에 연결한 웹 서비스입니다.</p>
+        <span class="score">팀 5인 · 팀장</span>
+      </div>
+      <p class="pmeta mono">2026.07.13 — 07.29 · 백엔드 · 팀 리드</p>
+      <p class="pone">
+        위 X-ray 모델을 실제 진료기록 화면에 연결했습니다. 맨 위 스크린샷이 이 프로젝트의 결과입니다.
+      </p>
+      <div class="pbody solo">
         <ul class="stack">
           <li>FastAPI</li><li>SQLAlchemy async</li><li>MySQL</li>
-          <li>Redis Stream + Pub/Sub</li><li>AI 워커 분리</li><li>Docker Compose</li>
+          <li>Redis Stream + Pub/Sub</li><li>AI 워커 컨테이너 분리</li><li>Docker Compose</li>
         </ul>
         <ol class="did">
-          <li><span><b>팀장</b> — GitHub main 브랜치·팀 문서 관리, 백엔드·프론트 병합 충돌 조정</span></li>
-          <li><span>마이페이지 · 환자 리스트 · 회원 리스트 API 설계·구현 및 명세 작성</span></li>
-          <li><span>무거운 추론이 API 서버를 막지 않도록 AI 워커를 <b>별도 컨테이너</b>로 분리하는 구조 검증</span></li>
+          <li><span><b>팀장</b> — GitHub main 브랜치와 팀 문서 관리, 백엔드·프론트 병합 충돌 조정</span></li>
+          <li><span>마이페이지 · 환자 리스트 · 회원 리스트 API 설계·구현 및 명세 작성. 팀원 이탈로 재배분된 범위의 명세를 추가 작성해 문서 공백을 메움</span></li>
+          <li><span>무거운 추론이 API 서버를 막지 않도록 AI 워커를 <b>별도 이미지·별도 컨테이너</b>로 분리 — FastAPI 이미지에서 torch 의존성 제거</span></li>
         </ol>
       </div>
     </article>
 
-    <article class="proj">
-      <div class="fig rise">
-        <b>19<i>위</i></b>
-        <span>0.95673<br>2026.06.16 — 07.01<br>개인 · 해커톤</span>
-      </div>
-      <div class="rise">
-        <h3>흉부 X-ray 폐렴 이진 분류</h3>
-        <p class="meta">Chest X-ray · Medical Imaging</p>
-        <p class="one">약 5,200장의 불균형 의료영상 분류. 기획부터 최종 제출까지 개인으로 수행했습니다.</p>
-        <ul class="stack">
-          <li>EfficientNet-B0</li><li>timm</li><li>320px</li>
-          <li>class weight</li><li>threshold 보정</li><li>seed 앙상블</li><li>Grad-CAM</li>
-        </ul>
-        <ol class="did">
-          <li><span>SimpleCNN → ResNet 계열 → <b>EfficientNet-B0</b>로 백본을 좁히고 입력 해상도를 <b class="hl">320px</b>까지 확대</span></li>
-          <li><span>클래스 불균형(1,341 : 3,875)에 class weight 적용, best model 기준을 accuracy → <b>F1</b>로 변경</span></li>
-          <li><span>threshold <b class="hl">0.48</b> + seed42·seed7 확률 앙상블(0.55 : 0.45)로 최종 <b class="hl">0.95673</b></span></li>
-          <li><span>threshold를 더 낮추자 false positive가 늘어 점수가 오히려 떨어졌습니다 — 많이 섞는 것보다 <b>보완되는 비율</b>을 찾는 게 중요했습니다</span></li>
-        </ol>
-      </div>
-    </article>
-
-    <article class="proj">
-      <div class="fig rise">
-        <b>13<i>위</i></b>
-        <span>0.74101<br>2026.05.22 — 06.01<br>팀 3인 · 해커톤</span>
-      </div>
-      <div class="rise">
+    <!-- 05 -->
+    <article class="proj rise">
+      <div class="phead">
         <h3>난임 환자 임신 성공 여부 예측</h3>
-        <p class="meta">Fertility · Clinical Tabular</p>
-        <p class="one">결측과 범주형이 많은 난임 시술 임상 데이터의 이진 분류 문제였습니다.</p>
+        <span class="score">13위 · 0.74101</span>
+      </div>
+      <p class="pmeta mono">2026.05.22 — 06.01 · 팀 3인 · 해커톤</p>
+      <p class="pone">
+        결측과 범주형이 많은 난임 시술 임상 데이터의 이진 분류. 첫 팀 단위 ML 프로젝트였습니다.
+      </p>
+      <div class="pbody solo">
         <ul class="stack">
           <li>CatBoost</li><li>XGBoost</li><li>LightGBM</li><li>Optuna</li>
         </ul>
         <ol class="did">
-          <li><span>시술유형·특정시술유형 등 의미가 겹치는 임상 변수를 정리해 <b>중복 신호 제거</b></span></li>
-          <li><span>결측을 채우지 않고 부스팅 모델에 그대로 넘기는 전처리 전략을 비교 검증</span></li>
-          <li><span>CatBoost 기반 최종 모델과 Optuna 탐색 담당, 팀 실험 결과를 모아 제출 조합 선정 <b class="hl">0.74101</b></span></li>
+          <li><span>시술유형 · 특정시술유형 · 통합시술유형처럼 의미가 겹치는 임상 변수를 정리해 중복 신호 제거</span></li>
+          <li><span>결측을 채우는 대신 <b>결측 자체를 정보로 다루는</b> 부스팅 계열에 그대로 넘기는 전략을 비교 검증</span></li>
+          <li><span>CatBoost 기반 최종 모델과 Optuna 탐색을 담당하고, 팀 실험 결과를 모아 제출 조합을 선정</span></li>
         </ol>
       </div>
     </article>
   </section>
 
   <section id="skills">
-    <p class="sec-label"><span>Skills</span><span>03</span></p>
-    <dl class="skills">
-      <div class="srow">
-        <dt>AI Agent / LLM</dt>
-        <dd><b>Google Gemini API</b> · Function(Tool) Calling · 프롬프트 설계 · 입력 가드레일·스코프 판정 · 근거 그라운딩 · 멀티모달 문서이해(VDU) · 대화 메모리·롤링 요약</dd>
-      </div>
-      <div class="srow">
-        <dt>Machine Learning</dt>
-        <dd><b>PyTorch</b> · timm · <b>scikit-learn</b> · CatBoost · XGBoost · LightGBM · 교차검증 설계(StratifiedGroupKFold) · 앙상블·임계값 보정 · Grad-CAM</dd>
-      </div>
-      <div class="srow">
-        <dt>Backend</dt>
-        <dd><b>FastAPI</b> · SQLAlchemy 2.0(async) · Alembic · PostgreSQL · MySQL · <b>Redis</b>(Stream·Pub/Sub) · JWT</dd>
-      </div>
-      <div class="srow">
-        <dt>Frontend</dt>
-        <dd>React · <b>TypeScript</b> · Vite · IndexedDB</dd>
-      </div>
-      <div class="srow">
-        <dt>Infra / Quality</dt>
-        <dd><b>Docker Compose</b> · GitHub Actions · pytest · vitest · ruff · mypy · Git</dd>
-      </div>
+    <div class="sec-head"><h2>기술</h2></div>
+    <dl style="margin:0">
+      <div class="row"><dt>AI Agent / LLM</dt><dd><b>Google Gemini API</b> · Function(Tool) Calling · 프롬프트 설계 · 입력 가드레일·스코프 판정 · 근거 그라운딩 · 멀티모달 문서이해(VDU) · 대화 메모리·롤링 요약</dd></div>
+      <div class="row"><dt>Machine Learning</dt><dd><b>PyTorch</b> · timm · <b>scikit-learn</b> · CatBoost · XGBoost · LightGBM · 교차검증 설계(StratifiedGroupKFold) · 앙상블·임계값 보정 · Grad-CAM</dd></div>
+      <div class="row"><dt>Backend</dt><dd><b>FastAPI</b> · SQLAlchemy 2.0(async) · Alembic · PostgreSQL · MySQL · <b>Redis</b>(Stream·Pub/Sub) · JWT</dd></div>
+      <div class="row"><dt>Frontend</dt><dd>React · <b>TypeScript</b> · Vite · IndexedDB</dd></div>
+      <div class="row"><dt>Infra / Quality</dt><dd><b>Docker Compose</b> · GitHub Actions · pytest · vitest · ruff · mypy · Git</dd></div>
     </dl>
   </section>
 
   <section id="experience">
-    <p class="sec-label"><span>Experience &amp; Education</span><span>04</span></p>
-
-    <div class="hrow">
-      <p class="when">2026.04 — 현재</p>
-      <div>
+    <div class="sec-head"><h2>경력 · 학력</h2></div>
+    <div class="row">
+      <div class="k mono" style="font-weight:400">2026.04 — 현재</div>
+      <div class="v">
         <h4>넥스트러너스 오즈코딩스쿨 <span>· 교육생</span></h4>
-        <ul>
-          <li>AI Healthcare 웹개발자 과정 — Python, SQL, Git, FastAPI, HTML·CSS·JavaScript</li>
-          <li>위 프로젝트 5건을 모두 이 과정에서 수행</li>
-        </ul>
+        <ul><li>AI Healthcare 웹개발자 과정 — Python, SQL, Git, FastAPI, HTML·CSS·JavaScript</li>
+        <li>위 프로젝트 5건을 모두 이 과정에서 수행</li></ul>
       </div>
     </div>
-    <div class="hrow">
-      <p class="when">2022.05 — 2023.06</p>
-      <div>
+    <div class="row">
+      <div class="k mono" style="font-weight:400">2022.05 — 2023.06</div>
+      <div class="v">
         <h4>㈜에이티에스테크놀로지 <span>· 안전관리부 사원</span></h4>
-        <ul>
-          <li>작업자 대상 안전교육 계획 및 운영</li>
-          <li>임직원 대상 법정의무교육 운영 및 이력 관리</li>
-          <li>ISO 45001 인증</li>
-        </ul>
+        <ul><li>작업자 대상 안전교육 계획 및 운영</li>
+        <li>임직원 대상 법정의무교육 운영 및 이력 관리</li>
+        <li>ISO 45001 인증</li></ul>
       </div>
     </div>
-    <div class="hrow">
-      <p class="when">2020.11 — 2021.05</p>
-      <div>
+    <div class="row">
+      <div class="k mono" style="font-weight:400">2020.11 — 2021.05</div>
+      <div class="v">
         <h4>㈜비케이알 <span>· 운영팀 사원</span></h4>
-        <ul>
-          <li>매장 운영 및 인사 관리 (근태, 입사교육 등)</li>
-          <li>고객 응대 및 매장 서비스 품질 관리</li>
-        </ul>
+        <ul><li>매장 운영 및 인사 관리(근태·입사교육), 고객 응대 및 서비스 품질 관리</li></ul>
       </div>
     </div>
-    <div class="hrow">
-      <p class="when">2019.07 — 2019.08</p>
-      <div>
+    <div class="row">
+      <div class="k mono" style="font-weight:400">2019.07 — 2019.08</div>
+      <div class="v">
         <h4>㈜두아트 <span>· 인턴</span></h4>
         <ul><li>PCB 설계 업무 프로세스 경험, PADS 실습을 통한 설계 과정 이해</li></ul>
       </div>
     </div>
-    <div class="hrow">
-      <p class="when">2014.03 — 2020.02</p>
-      <div>
+    <div class="row">
+      <div class="k mono" style="font-weight:400">2014.03 — 2020.02</div>
+      <div class="v">
         <h4>경기대학교 <span>· 전자공학과 졸업</span></h4>
-        <p>2021.08 — 2022.05  경기인력개발원 CAD·CAM 제작과정 수료</p>
+        <p>2021.08 — 2022.05 · 경기인력개발원 CAD·CAM 제작과정 수료</p>
       </div>
     </div>
-    <div class="hrow">
-      <p class="when">자격 · 어학</p>
-      <div>
-        <p>TOEIC 795 · TOEIC Speaking IM3 · 컴퓨터응용밀링기능사 · 자동차운전면허 2종 보통</p>
-      </div>
+    <div class="row">
+      <div class="k mono" style="font-weight:400">자격 · 어학</div>
+      <div class="v"><p style="margin:0">TOEIC 795 · TOEIC Speaking IM3 · 컴퓨터응용밀링기능사 · 자동차운전면허 2종 보통</p></div>
     </div>
   </section>
-</main>
+  </main>
+</div>
 
-<footer class="contact wrap">
-  <p class="say-big rise">함께 만들 것이 있다면 <b>연락 주세요.</b></p>
-  <div class="contact-grid">
-    <p><span class="k">Email</span><a class="v" href="mailto:jungdw95@gmail.com">jungdw95@gmail.com</a></p>
-    <p><span class="k">Tel</span><a class="v" href="tel:+821077511540">010-7751-1540</a></p>
-    <p><span class="k">GitHub</span><a class="v" href="https://github.com/dungdada">github.com/dungdada</a></p>
-  </div>
-  <p class="colophon">
-    정다원 · AI Agent Developer<br>
-    최종 수정 2026.09.17 — 프로젝트 성적은 각 해커톤 리더보드 최종 순위 기준입니다.<br>
-    팀 프로젝트는 비공개 저장소로, 요청 시 커밋 이력과 담당 파일을 공유할 수 있습니다.
-  </p>
-</footer>
+<div class="wrap">
+  <footer class="foot">
+    <p class="mono" style="margin:0">Contact</p>
+    <div class="cgrid">
+      <a href="mailto:jungdw95@gmail.com">jungdw95@gmail.com</a>
+      <a href="tel:+821077511540">010-7751-1540</a>
+      <a href="https://github.com/dungdada">github.com/dungdada</a>
+    </div>
+    <p class="mono colophon">
+      정다원 · AI Agent Developer<br>
+      프로젝트 성적은 각 해커톤 리더보드 최종 순위 기준입니다.<br>
+      팀 프로젝트는 비공개 저장소로, 요청 시 커밋 이력과 담당 파일을 공유할 수 있습니다.<br>
+      최종 수정 2026.09.17
+    </p>
+  </footer>
+</div>
 
 <script>
 (function () {
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* scroll progress */
-  var bar = document.getElementById('bar');
-  function prog() {
-    var h = document.documentElement;
-    var max = h.scrollHeight - h.clientHeight;
-    var p = max > 0 ? (h.scrollTop || document.body.scrollTop) / max : 0;
-    bar.style.width = Math.min(100, Math.max(0, p * 100)) + '%';
-  }
-  window.addEventListener('scroll', prog, { passive: true });
-  window.addEventListener('resize', prog);
-  prog();
-
-  if (reduce || !('IntersectionObserver' in window)) return;
-
-  /* reveal — transform only, text stays readable at all times */
-  var targets = document.querySelectorAll('.rise, .bar-anim');
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
+  if (!('IntersectionObserver' in window)) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
       if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
     });
-  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-  targets.forEach(function (el) { io.observe(el); });
-
-  /* count-up on the figure strip — starts from the real value in the HTML */
-  var counted = new WeakSet();
-  var cio = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (!e.isIntersecting || counted.has(e.target)) return;
-      counted.add(e.target);
-      var end = parseInt(e.target.getAttribute('data-count'), 10);
-      if (!isFinite(end)) return;
-      var t0 = null, dur = 900;
-      function step(ts) {
-        if (t0 === null) t0 = ts;
-        var k = Math.min(1, (ts - t0) / dur);
-        var eased = 1 - Math.pow(1 - k, 3);
-        e.target.textContent = String(Math.round(end * eased));
-        if (k < 1) requestAnimationFrame(step);
-        else e.target.textContent = String(end);
-      }
-      requestAnimationFrame(step);
-    });
-  }, { threshold: 0.5 });
-  document.querySelectorAll('[data-count]').forEach(function (el) { cio.observe(el); });
+  }, { rootMargin: '0px 0px -6% 0px', threshold: 0.05 });
+  document.querySelectorAll('.rise').forEach(function (el) { io.observe(el); });
 })();
 </script>
 
